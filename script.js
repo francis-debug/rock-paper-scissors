@@ -1,4 +1,7 @@
-function playGame(gameResult) {
+let gameResult = playGame()
+alert (gameResult)
+
+function playGame() {
     let playerScore = 0
     let computerScore = 0
     playRound ()
@@ -22,12 +25,12 @@ function playGame(gameResult) {
         let computerChoice = getComputerChoice()
         let roundResult = endRound()
 
-        function getPlayerChoice(playerChoice) {
+        function getPlayerChoice() {
             let playerInput = prompt("What is your choice?")
             return playerInput.toLowerCase()
         }
 
-        function getComputerChoice(computerChoice) {
+        function getComputerChoice() {
             let compChoice = Math.random()
             if (compChoice <= .33) {
                 return "rock"
@@ -37,7 +40,7 @@ function playGame(gameResult) {
             }
         }
 
-        function endRound(roundResult) {
+        function endRound() {
             if (playerChoice == computerChoice) {
                 return ("you tied!")
             } else if (playerChoice == "rock" && computerChoice == "scissors"){
@@ -62,6 +65,3 @@ function playGame(gameResult) {
         console.log (roundResult)
     }
 }
-
-let gameResult = playGame()
-alert (gameResult)
