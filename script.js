@@ -1,41 +1,67 @@
-function playRound() {
-    let computerChoice = getComputerChoice()
-    let playerChoice = getPlayerChoice()
-    let roundResult = endRound()
+function playGame(gameResult) {
+    let playerScore = 0
+    let computerScore = 0
+    playRound ()
+    console.log (playerScore, computerScore)
+    playRound ()
+    console.log (playerScore, computerScore)
+    playRound ()
+    console.log (playerScore, computerScore)
+    playRound ()
+    console.log (playerScore, computerScore)
+    playRound ()
+    console.log (playerScore, computerScore)
+    if (playerScore > computerScore)
+    return ("you win the game!")
+    else if (computerScore > playerScore)
+    return ("you lost the game")
+    else return ("you tied the game!") 
 
-    function getPlayerChoice(playerChoice) {
-        let playerInput = prompt("What's your choice?")
-        return playerInput.toLowerCase()
-    }
+    function playRound() {
+        let playerChoice = getPlayerChoice()
+        let computerChoice = getComputerChoice()
+        let roundResult = endRound()
 
-    function getComputerChoice(computerChoice) {
-        let compChoice = Math.random()
-        if (compChoice <= .33) {
-            return "rock"
-        } else if (compChoice <= .67) {
-            return "paper"}
-        else { return "scissors"
+        function getPlayerChoice(playerChoice) {
+            let playerInput = prompt("What is your choice?")
+            return playerInput.toLowerCase()
         }
-    }
 
-    function endRound(roundResult) {
-        if (playerChoice == computerChoice)
-            return ('you tied!')
-        else if (playerChoice == "rock" && computerChoice == "scissors")
-            return ('your opponent played scissors, you win!')
-        else if (playerChoice == "scissors" && computerChoice == "paper")
-            return ('your opponent played paper, you win!')
-        else if (playerChoice == "paper" && computerChoice == "rock")
-            return ('your opponent played rock, you win!')
-        else if (playerChoice == "rock" && computerChoice == "paper")
-            return ('your opponent played paper, you lose!')
-        else if (playerChoice == "scissors" && computerChoice == "rock")
-            return ('your opponent played rock, you lose!')
-        else if (playerChoice == "paper" && computerChoice == "scissors")
-            return ('your opponent played scissors, you lose!')
-    }
+        function getComputerChoice(computerChoice) {
+            let compChoice = Math.random()
+            if (compChoice <= .33) {
+                return "rock"
+            } else if (compChoice <= .67) {
+                return "paper"}
+            else { return "scissors"
+            }
+        }
 
-    console.log (roundResult)
+        function endRound(roundResult) {
+            if (playerChoice == computerChoice) {
+                return ("you tied!")
+            } else if (playerChoice == "rock" && computerChoice == "scissors"){
+                playerScore += 1
+                return ("you win!")
+            } else if (playerChoice == "scissors" && computerChoice == "paper"){
+                playerScore += 1
+                return ("you win!")
+            } else if (playerChoice == "paper" && computerChoice == "rock"){
+                playerScore += 1
+                return ("you win!")
+            } else if (playerChoice == "rock" && computerChoice == "paper"){
+                computerScore += 1
+                return ("you lose!")
+            } else if (playerChoice == "scissors" && computerChoice == "rock"){
+                computerScore += 1
+                return ("you lose!")
+            } else if (playerChoice == "paper" && computerChoice == "scissors")
+                computerScore += 1
+                return ("you lose!")
+        }    
+        console.log (roundResult)
+    }
 }
 
-playRound()
+let gameResult = playGame()
+alert (gameResult)
