@@ -5,6 +5,7 @@ const scoreComputer = document.getElementById('computer-score');
 const playerRock = document.getElementById('rock-button');
 const playerPaper = document.getElementById('paper-button');
 const playerScissors = document.getElementById('scissors-button');
+const compChoiceDisplayed = document.getElementById('comp-choice');
 
 let playerScore = 0;
 let computerScore = 0;
@@ -50,8 +51,9 @@ function getComputerChoice() {
 // Determine round winner
 
 function DetermineWinner(playerChoice) {;
-    gameResult.textContent = '';
+    gameResult.textContent = ''; // Reset the game result if starting a new game
     let computerChoice = getComputerChoice();
+    compChoiceDisplayed.textContent = computerChoice;
     if (playerChoice == computerChoice) {
         resultOfRound = 'You tied!'
     } else if (playerChoice == 'rock' && computerChoice == 'scissors'){
@@ -82,7 +84,7 @@ function tallyScore() {
     scoreComputer.textContent = computerScore;
 }
 
-// Check if game has been won
+// Check if game has been won and reset scores
 
 function checkForGameWinner(){
     if (playerScore >= 5) {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -14,11 +15,19 @@
             <button class="rps-btn" id="paper-button">Paper</button>
             <button class="rps-btn" id="scissors-button">Scissors</button>
         </div>
-        <div id="result-box"></div>
-        <div id="score-box">
-            <div id="player-score">0</div>
-            <div id="computer-score">0</div>
+        <div class="comp-chose">The computer chose: <span id="comp-choice"></span>
         </div>
+        <div class="score-box-container">
+            <div class="score-box">
+                <div>Player:</div>
+                <div id="player-score">0</div>
+            </div>
+            <div class="score-box" >
+                <div>Computer:</div>
+                <div id="computer-score">0</div>
+            </div>
+        </div>
+        <div id="result-box"></div>
         <div id="game-result"></div>
     </main>
 </body>
