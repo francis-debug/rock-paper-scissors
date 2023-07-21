@@ -1,49 +1,39 @@
 const gameResult = document.getElementById('game-result');
-const resultBox = document.getElementById('result-box');
-const scorePlayer = document.getElementById('player-score')
-const scoreComputer = document.getElementById('computer-score')
+const roundResult = document.getElementById('result-box');
+const scorePlayer = document.getElementById('player-score');
+const scoreComputer = document.getElementById('computer-score');
+const playerRock = document.getElementById('rock-button');
+const playerPaper = document.getElementById('paper-button');
+const playerScissors = document.getElementById('scissors-button');
 
 let playerScore = 0;
 let computerScore = 0;
+let resultOfRound = ''
 
-/*
-// Check if game has ended and reset the scoreboard
-checkForGameOver() {
-    if (document.getElementById('game-result').textContent = ('You Win!' | 'You Lose!')) {
-        
-    }
-}
-*/
+// Start a round based on player choice
 
-// End the game if a player hits 5 points
-
-function checkForWinner(){
-    if (playerScore >= 5) {
-        gameResult.textContent = 'You Win!'
-    }
-    else if (computerScore >= 5) {
-        gameResult.textContent = 'You Lose!'
-    }
-    else return
-};
-
-// Determine player choice
-
-const playerRock = document.getElementById('rock-button');
 playerRock.addEventListener('click', function() {
-    resultBox.innerHTML = playRound('rock')
+    playRound('rock');
+    roundResult.textContent = resultOfRound;
 });
 
-const playerPaper = document.getElementById('paper-button');
 playerPaper.addEventListener('click', function() {
-    resultBox.innerHTML = playRound('paper')
+    playRound('paper')
+    roundResult.textContent = resultOfRound
 });
 
-const playerScissors = document.getElementById('scissors-button');
 playerScissors.addEventListener('click', function() {
-    resultBox.innerHTML = playRound('paper')
+    playRound('scissors')
+    roundResult.textContent = resultOfRound
 });
 
+// Play a round
+
+function playRound(playerChoice){
+    DetermineWinner(playerChoice);
+    tallyScore();
+    checkForGameWinner();
+}
 
 // Determine computer choice
 
@@ -59,52 +49,51 @@ function getComputerChoice() {
 
 // Determine round winner
 
-function playRound(playerChoice) {
-    checkForWinner()
-    scorePlayer.textContent = playerScore;
-    scoreComputer.textContent = computerScore;
-    let computerChoice = getComputerChoice()
+function DetermineWinner(playerChoice) {;
+    gameResult.textContent = '';
+    let computerChoice = getComputerChoice();
     if (playerChoice == computerChoice) {
-        return ('you tied!')
+        resultOfRound = 'You tied!'
     } else if (playerChoice == 'rock' && computerChoice == 'scissors'){
         playerScore += 1
-        return ('you win!')
+        resultOfRound = 'You win!'
     } else if (playerChoice == 'scissors' && computerChoice == 'paper'){
         playerScore += 1
-        return ('you win!')
+        resultOfRound = 'You win!'
     } else if (playerChoice == 'paper' && computerChoice == 'rock'){
         playerScore += 1
-        return ('you win!')
+        resultOfRound = 'You win!'
     } else if (playerChoice == 'rock' && computerChoice == 'paper'){
         computerScore += 1
-        return ('you lose!')
+        resultOfRound = 'You lose!'
     } else if (playerChoice == 'scissors' && computerChoice == 'rock'){
         computerScore += 1
-        return ('you lose!')
-    } else if (playerChoice == 'paper' && computerChoice == 'scissors')
+        resultOfRound = 'You lose!'
+    } else if (playerChoice == 'paper' && computerChoice == 'scissors'){
         computerScore += 1
-        return ('you lose!')
+        resultOfRound = 'You lose!'
+    }
 };
 
+// Tally the score
 
-/*
-function playGame() {
-    let playerScore = 0
-    let computerScore = 0
-    playRound ()
-    console.log (playerScore, computerScore)
-    playRound ()
-    console.log (playerScore, computerScore)
-    playRound ()
-    console.log (playerScore, computerScore)
-    playRound ()
-    console.log (playerScore, computerScore)
-    playRound ()
-    console.log (playerScore, computerScore)
-    if (playerScore > computerScore)
-    return ('you win the game!')
-    else if (computerScore > playerScore)
-    return ('you lost the game')
-    else return ('you tied the game!')
+function tallyScore() {
+    scorePlayer.textContent = playerScore;
+    scoreComputer.textContent = computerScore;
 }
-*/
+
+// Check if game has been won
+
+function checkForGameWinner(){
+    if (playerScore >= 5) {
+        gameResult.textContent = 'You Won the Game!'
+        playerScore = 0;
+        computerScore = 0;
+    }
+    else if (computerScore >= 5) {
+        gameResult.textContent = 'You Lost the Game!'
+        playerScore = 0;
+        computerScore = 0;
+    }
+    else return
+};
