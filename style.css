@@ -42,16 +42,16 @@
 
 .score-box div {
     border: solid black;
-    border-radius: 3px;
+    border-radius: 2px;
     border-width: 1px;
-    width: 80px;
-    padding: 8px;
-    margin: 10px;
+    width: 82px;
+    padding: 9px;
+    margin: 11px;
     text-align: center;}
 
 #player-score, #computer-score {
-    width: 20px;
-    margin: 10px;
+    width: 22px;
+    margin: 11px;
 }
 
 #result-box {
